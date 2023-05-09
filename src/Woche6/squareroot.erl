@@ -19,4 +19,3 @@ wurzel(X,Y,Epsilon) ->
     true -> Y;
     false -> wurzel(X, 1/2 * (Y + X/Y), Epsilon)
   end.
-
