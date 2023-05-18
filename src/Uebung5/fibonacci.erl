@@ -19,8 +19,6 @@ fib(N) when N > 1 ->
 fib(_) ->
   {error, invalid_input}.
 
-fib_end_rec(0) -> 0;
-fib_end_rec(1) -> 1;
 fib_end_rec(N) when N > 1 -> fib_end_rec(N, 0, 1);
 fib_end_rec(_) -> {error, invalid_input}.
 
