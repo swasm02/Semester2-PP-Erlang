@@ -27,3 +27,10 @@ wurzel2(X,Y, U) ->
     true -> Y;
     false -> wurzel2(X, Z , U)
   end.
+
+wurzelUebungsstunde (X,Y,Epsilon) ->
+  Yneu = wurzel(X, 1/2 * (Y + X/Y), Epsilon),
+  case abs(Yneu - Y) < Epsilon of
+    true -> Y;
+    false -> Yneu
+  end.
