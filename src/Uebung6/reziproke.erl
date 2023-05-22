@@ -12,7 +12,7 @@
 %% API
 -export([inverse/1, altInverse/1, inv/1, inverse2/1]).
 
-inverse(N) when is_number(N) and (N =/= 0) and (N =/= 0.0) -> 1/N;
+inverse(N) when is_number(N) and (N /= 0) -> 1/N;
 inverse(_) -> fail.
 
 inverse2(N) -> try 1/N catch _:_ -> fail end.
