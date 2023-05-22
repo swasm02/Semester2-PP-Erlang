@@ -25,12 +25,12 @@ wurzel2(X,Y, U) ->
   %io:fwrite("Y: ~p  Z: ~p ", [Y, Z]),
   case abs(Y-Z) < U of
     true -> Y;
-    false -> wurzel2(X, Z , U)
+    false -> wurzel2(X, Z, U)
   end.
 
 wurzelUebungsstunde (X,Y,Epsilon) ->
-  Yneu = wurzel(X, 1/2 * (Y + X/Y), Epsilon),
+  Yneu = X, 1/2 * (Y + X/Y),
   case abs(Yneu - Y) < Epsilon of
     true -> Y;
-    false -> Yneu
+    false -> wurzelUebungsstunde(X, Yneu, Epsilon)
   end.
