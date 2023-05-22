@@ -10,13 +10,18 @@
 -author("swasm").
 
 %% API
--export([inverse/1, map/2, altInverse/1]).
+-export([inverse/1, altInverse/1, inv/1, inverse2/1]).
 
-inverse(N) when is_integer(N) -> 1/N;
+inverse(N) when is_number(N) and (N =/= 0) and (N =/= 0.0) -> 1/N;
 inverse(_) -> fail.
 
-map(_, []) -> [];
-map(Func, [H|T]) -> [Func(H)|map(Func, T)].
+inverse2(N) -> try 1/N catch _:_ -> fail end.
+
+% siehe Aufgabe vorher lists: fehlt!
+% map(_, []) -> [];
+% map(Func, [H|T]) -> [Func(H)|map(Func, T)].
+
+inv(L) -> lists:map(fun inverse/1, L).
 
 % das gleiche per List Comprehension:
 altInverse(List) -> [inverse(X) || X <- List].
