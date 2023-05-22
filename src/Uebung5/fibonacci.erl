@@ -24,3 +24,6 @@ fib_end_rec(_) -> {error, invalid_input}.
 
 fib_end_rec(N, X, Y) when N == 0 -> X;
 fib_end_rec(N, X, Y) -> fib_end_rec(N - 1, Y, X + Y).
+
+
+% Herausfinden der Dauer: timer:tc(fibonacci, fib, [42]).
