@@ -1,0 +1,25 @@
+Aufgabe 1 von Übung 7
+
+Mitarbeiter = [{name,"Micha"},{name,"Franz"},{name,"Micha"}].
+Studenten = [{name,"Daniel"},{name,"Alex"},{name,"Markus"}].
+
+% Aufgabenteil a)
+ListTest = fun(L) -> (fun(X) -> lists:member({name,X},L) end) end.
+DrinneStud = ListTest(Studenten).
+
+DrinneStud("Micha").    %false
+DrinneStud("Daniel").   %true#
+
+
+% Aufgabenteil b)
+ListAdd = fun(L) -> (fun({A,B}) -> lists:append([{A,B}],L) end) end.
+AddStud = ListAdd(Studenten).
+
+AddStud({name, "Max"}).
+
+
+% Aufgabenteil c)
+ListRemove = fun(L) -> (fun(X) -> lists:delete(X,L) end) end.
+RemStud = ListRemove(Studenten).
+
+RemStud({name,"Max"}).
