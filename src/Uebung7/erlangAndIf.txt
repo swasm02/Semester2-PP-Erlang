@@ -1,0 +1,15 @@
+Aufgabe 3 für Übung 7
+
+1) Fehlermeldung:
+erlang_and_if.erl:11:3: Warning: no clause will ever match
+%   11|   if 42 =:= 73, 42 =:= 42 ->
+%     |   ^
+
+erlang_and_if.erl:11:6: Warning: this clause cannot match because its guard evaluates to 'false'
+%   11|   if 42 =:= 73, 42 =:= 42 ->
+%     |      ^
+
+2)
+In der If Expression bedeutet:
+, => AND ==> false AND true
+; => OR
