@@ -8,7 +8,7 @@ ListTest = fun(L) -> (fun(X) -> lists:member({name,X},L) end) end.
 DrinneStud = ListTest(Studenten).
 
 DrinneStud("Micha").    %false
-DrinneStud("Daniel").   %true#
+DrinneStud("Daniel").   %true
 
 
 % Aufgabenteil b)
