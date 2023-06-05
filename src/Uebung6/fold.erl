@@ -26,6 +26,11 @@ ggT(A, B) when is_integer(A), is_integer(B) ->
   end;
 ggT(_,_) -> {wrongInput}.
 
+% Annas Lösung
+gg(X,Y) when Y == 0 -> X;
+gg(X,Y) -> gg(Y, X rem Y).
+
+gggT([H|T]) -> lists:foldl(fun gg/2, H, T).
 
 % Aufgabenteil 2:
 kgV(List) ->
@@ -34,6 +39,10 @@ kgV(List) ->
 kgV(A, B) when is_integer(A), is_integer(B) ->
   trunc(abs(A * B) / ggT(A,B));
 kgV(_,_) -> {wrongInput}.
+
+% Annas Lösung
+kg(X,Y) -> abs(X * Y) div gg(X,Y).
+kkgV([H|T]) -> lists:foldl(fun kg/2, H, T).
 
 % Aufgabenteil 3:
 %  fold:kgV([2, 3, 6, 5]).
