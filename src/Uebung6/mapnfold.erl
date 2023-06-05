@@ -29,7 +29,7 @@ toB2(N, B2) -> toB2_helper(N, B2,[]).
 toB2_helper(0,_,List) -> List;
 toB2_helper(N,B2,List) -> toB2_helper(trunc(N/B2),B2,[N rem B2 | List]).
 
-% Lösung nach Aufgabenstellung mit map
+% Lösung nach Aufgabenstellung
 mapping(List) ->
   one_sum([toB2(X,2) || X <- List]).
 
@@ -42,3 +42,8 @@ one_sum([H|T], Acc) ->
     true -> one_sum(T,Acc+1);
     false -> one_sum(T,Acc)
   end.
+
+% Übungsstunde
+countBits(0) -> 0;
+countBits(A) -> (A rem 2) + countBits(A div 2).
+countBitsL(L) -> lists:foldl(fun (C, A) -> A + countBits(C) end, 0, L).
