@@ -41,7 +41,9 @@ kgV(A, B) when is_integer(A), is_integer(B) ->
 kgV(_,_) -> {wrongInput}.
 
 % Annas Lösung
-kg(X,Y) -> abs(X * Y) div gg(X,Y).
+kg(X,Y) ->
+  io:format("X: ~B Y: ~B~n", [X,Y]),
+  abs(X * Y) div gg(X,Y).
 kkgV([H|T]) -> lists:foldl(fun kg/2, H, T).
 
 % Aufgabenteil 3:
