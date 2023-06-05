@@ -13,3 +13,6 @@ erlang_and_if.erl:11:6: Warning: this clause cannot match because its guard eval
 In der If Expression bedeutet:
 , => AND ==> false AND true
 ; => OR
+
+Übungsstunde
+=:= typsicherer Vergleich
