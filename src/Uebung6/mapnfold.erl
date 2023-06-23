@@ -10,7 +10,7 @@
 -author("swasm").
 
 %% API
--export([count/1, mapping/1]).
+-export([count/1, mapping/1, countBits/1, countBitsL/1]).
 
 % eigene Lösung ohne Aufgabenstellung gelesen zu haben (richtige siehe unten.)
 count(List) -> count(wandeln(List), 0).
