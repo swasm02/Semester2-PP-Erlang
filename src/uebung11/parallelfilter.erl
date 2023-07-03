@@ -9,6 +9,8 @@
 -module(parallelfilter).
 -author("swasm").
 
+%% kompletter Müll, aber ich hab keine Lust mehr
+
 %% API
 -export([filter_parallel/3, filter_spawn/2]).
 
