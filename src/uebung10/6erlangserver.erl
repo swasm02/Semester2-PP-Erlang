@@ -21,25 +21,35 @@
 
 server() ->
   receive
-    {quader, Laenge, Breite, Hoehe} ->
-      io:format("Volumen Quader: ~p~n", [Laenge * Breite * Hoehe]),
+    {Pid, {quader, Laenge, Breite, Hoehe}} ->
+      Pid ! Laenge * Breite * Hoehe,
       server();
-    {kugel, Radius} ->
-      io:format("Volumen Kugel: ~p~n", [4/3 * Radius * Radius * Radius * math:pi()]),
+    {Pid, {kugel, Radius}} ->
+      Pid ! 4/3 * Radius * Radius * Radius * math:pi(),
       server();
-    {zylinder, Radius, Hoehe} ->
-      io:format("Volumen Zylinder: ~p~n", [math:pi() * Radius * Radius * Hoehe]),
+    {Pid, {zylinder, Radius, Hoehe}} ->
+      Pid ! Radius * Radius * math:pi() * Hoehe,
       server();
-    stop -> true;
-    _ ->
-      io:format("Falsche Parameter! :(~n"),
+    {Pid, stop} ->
+      Pid ! stopped,
+      stopped;
+    {Pid, _} ->
+      Pid ! {error, unknown_request},
       server()
+  end.
+
+berechne(ServerPID, Anfrage) ->
+  ServerPID ! {self(), Anfrage},
+  receive
+    X -> X
+  after 1.0 ->
+    {error, timeout}
   end.
 
 run() ->
   Pid = spawn(fun server/0),
-  Pid ! {quader, 2, 3, 4},
-  Pid ! {kugel, 2},
-  Pid ! {quadrat, 2},
-  Pid ! {zylinder, 2, 3},
-  Pid ! stop.
+  berechne(Pid, {quader, 2, 3, 4}),
+  berechne(Pid, {kugel, 2}),
+  berechne(Pid, {zylinder, 2, 3}),
+  berechne(Pid, {quader, 2, 3, 4}),
+  berechne(Pid, stop).
