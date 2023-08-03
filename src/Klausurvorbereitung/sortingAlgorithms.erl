@@ -10,29 +10,29 @@
 -author("swasm").
 
 %% API
--export([]).
+-export([]). %add export if you want to export any function
 
-ms([],K)->[];
-ms(X,K) when length(X) == 1 ->X;
-ms(L,K)->
+ms([],_)->[];
+ms(L,_) when length(L) == 1 -> L;
+ms(L,K) ->  % K ^= Anzahl der Threads
   Parent = self(),
   {L1 , L2} = lists:split(length(L) div 2, L),
   case (K > 0) of
     true -> spawn(fun()-> Parent ! ms(L1, K-1) end),
       L22 = ms(L2,K-1),
-      merge(receive T2 -> T2 end, L22);
+      lists:merge(receive T2 -> T2 end, L22);
     false -> L12 = ms(L1, K),
       L22 = ms(L2, K),
-      merge(L12, L22)
+      lists:merge(L12, L22)
   end.
 
-merge([H1| T1], [H2|T2])->
-  case (H1 < H2) of
-    true -> [H1 | merge(T1, [H2|T2])];
-    false -> [H2 | merge([H1|T1], T2)]
-  end;
-merge([],L)-> L;
-merge(L,[])-> L.
+%merge([H1| T1], [H2|T2])->
+%  case (H1 < H2) of
+%    true -> [H1 | merge(T1, [H2|T2])];
+%    false -> [H2 | merge([H1|T1], T2)]
+%  end;
+%merge([],L)-> L;
+%merge(L,[])-> L.
 
 
 
